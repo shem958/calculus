@@ -1,3 +1,4 @@
+/* Basic body styling */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f9f9f9;
@@ -10,6 +11,7 @@ body {
     min-height: 100vh;
 }
 
+/* Main container */
 .container {
     max-width: 800px;
     width: 100%;
@@ -20,6 +22,7 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Header styling */
 h1 {
     text-align: center;
     font-size: 2.5rem;
@@ -27,6 +30,7 @@ h1 {
     color: #007bff;
 }
 
+/* Quiz question inputs */
 #quiz-section input[type="text"] {
     width: 100%;
     padding: 10px;
@@ -37,6 +41,7 @@ h1 {
     box-sizing: border-box;
 }
 
+/* Submit button styling */
 #submit-btn {
     display: block;
     width: 100%;
@@ -55,6 +60,12 @@ h1 {
     background-color: #0056b3;
 }
 
+/* Hide sections initially */
+#result-section, #performance-chart, #improvement-areas, #leaderboard {
+    display: none;
+}
+
+/* Result section styling */
 #result-section {
     margin-top: 30px;
     padding: 20px;
@@ -66,13 +77,17 @@ h1 {
     font-weight: bold;
 }
 
+/* Canvas for the performance chart */
 canvas {
     margin-top: 30px;
     background-color: #f1f8e9;
     border-radius: 8px;
     padding: 20px;
+    width: 100%;
+    max-width: 700px;
 }
 
+/* Improvement areas styling */
 #improvement-areas {
     margin-top: 30px;
     padding: 20px;
@@ -81,13 +96,11 @@ canvas {
     font-size: 1.1rem;
     line-height: 1.5;
 }
-
 #improvement-areas h3 {
     margin-bottom: 10px;
     color: #ff9800;
     font-size: 1.4rem;
 }
-
 #improvement-areas ul {
     padding-left: 20px;
 }
@@ -96,6 +109,28 @@ canvas {
     margin-bottom: 8px;
 }
 
+/* Leaderboard section */
+#leaderboard {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e3f2fd;
+    border-radius: 8px;
+}
+#leaderboard h2 {
+    margin-bottom: 10px;
+    color: #1976d2;
+    font-size: 1.5rem;
+}
+#leaderboard ul {
+    list-style-type: none;
+    padding: 0;
+}
+#leaderboard ul li {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+/* Responsive design for small screens */
 @media (max-width: 600px) {
     .container {
         padding: 20px;
@@ -118,5 +153,8 @@ canvas {
     }
     #improvement-areas h3 {
         font-size: 1.2rem;
+    }
+    #leaderboard h2 {
+        font-size: 1.3rem;
     }
 }
