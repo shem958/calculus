@@ -10,23 +10,22 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  let quizSection = document.getElementById("quiz-section");
-  let resultSection = document.getElementById("result-section");
-  let improvementSection = document.getElementById("improvement-areas");
-  let submitBtn = document.getElementById("submit-btn");
+  const quizSection = document.getElementById("quiz-section");
+  const resultSection = document.getElementById("result-section");
+  const improvementSection = document.getElementById("improvement-areas");
+  const submitBtn = document.getElementById("submit-btn");
   let userAnswers = [];
-  let correctAnswers = [];
+  const correctAnswers = questions.map((q) => q.answer);
 
   function loadQuiz() {
     quizSection.innerHTML = "";
     questions.forEach((q, index) => {
-      let questionDiv = document.createElement("div");
+      const questionDiv = document.createElement("div");
       questionDiv.innerHTML = `
-      <p>${q.question}</p>
-      <input type="text" id="answer-${index}>     
-      `;
+              <p>${q.question}</p>
+              <input type="text" id="answer-${index}">
+          `;
       quizSection.appendChild(questionDiv);
-      correctAnswers.push(q.answer);
     });
   }
 
@@ -34,7 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let score = 0;
     userAnswers = [];
     questions.forEach((q, index) => {
-      let userAnswer = document.getElementById(`answer-${index}`).value;
+      const userAnswer = document
+        .getElementById(`answer-${index}`)
+        .value.trim();
       userAnswers.push(userAnswer);
       if (userAnswer === q.answer) {
         score++;
@@ -48,11 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function displayResults(score) {
     resultSection.innerHTML = `<h2>Your Score: ${score}/${questions.length}</h2>`;
   }
+
   function updatePerformanceChart(score) {
-    let scores = JSON.parse(localStorage.getItem("scores")) || [];
+    const scores = JSON.parse(localStorage.getItem("scores")) || [];
     scores.push(score);
     localStorage.setItem("scores", JSON.stringify(scores));
-    let ctx = document.getElementById("performance-chart").getContext("2d");
+    const ctx = document.getElementById("performance-chart").getContext("2d");
     new Chart(ctx, {
       type: "line",
       data: {
@@ -77,21 +79,24 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
   }
+
   function provideFeedback() {
-    let weakAreas = [];
-    userAnswers.forEach((answer, index) => {
-      if (answer !== correctAnswers[index]) {
-        weakAreas.push(`Question ${index + 1}: ${questions[index].question}`);
-      }
-    });
+    const weakAreas = userAnswers
+      .map((answer, index) =>
+        answer !== correctAnswers[index]
+          ? `Question ${index + 1}: ${questions[index].question}`
+          : null
+      )
+      .filter((area) => area !== null);
+
     improvementSection.innerHTML =
       weakAreas.length > 0
-        ? `
-    <h3>Areas to Improve:</h3>
-    <ul>${weakAreas.map((area) => `<li>${area}</li>`).join("")}</ul>
-    `
+        ? `<h3>Areas to Improve:</h3><ul>${weakAreas
+            .map((area) => `<li>${area}</li>`)
+            .join("")}</ul>`
         : `<p>Great job! No weak areas detected.</p>`;
   }
+
   submitBtn.addEventListener("click", gradeQuiz);
   loadQuiz();
 });

@@ -9,6 +9,7 @@ body {
     align-items: center;
     min-height: 100vh;
 }
+
 .container {
     max-width: 800px;
     width: 100%;
@@ -18,6 +19,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
+
 h1 {
     text-align: center;
     font-size: 2.5rem;
@@ -51,7 +53,7 @@ h1 {
 
 #submit-btn:hover {
     background-color: #0056b3;
-}    
+}
 
 #result-section {
     margin-top: 30px;
@@ -79,11 +81,13 @@ canvas {
     font-size: 1.1rem;
     line-height: 1.5;
 }
+
 #improvement-areas h3 {
     margin-bottom: 10px;
     color: #ff9800;
     font-size: 1.4rem;
 }
+
 #improvement-areas ul {
     padding-left: 20px;
 }
